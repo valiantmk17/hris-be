@@ -1,0 +1,18 @@
+{
+  "name": "magang-be",
+  "version": "1.0.0",
+  "description": "Sharing session to create simple Rest API using ExpressJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "nodemon": "^2.0.20"
+  }
+}
