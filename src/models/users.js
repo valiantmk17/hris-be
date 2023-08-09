@@ -1,19 +1,23 @@
 const dbPool = require('../config/database')
+const bcrypt = require("bcryptjs")
 
 const getAllUsers = () => {
-    const sqlQuery = 'SELECT * FROM users';
+    const sqlQuery = 'SELECT id,name,email FROM users';
 
     return dbPool.execute(sqlQuery)
 }
-
+//Sign up
 const createNewUser = (body) => {
-    const sqlQuery = `INSERT INTO users (name, email) VALUES ('${body.name}', '${body.email}')`
+    const encryptedPassword = bcrypt.hashSync(body.password, 8)
+    const sqlQuery = `INSERT INTO users (name, email,password) VALUES ('${body.name}', '${body.email}', '${encryptedPassword}')`
 
     return dbPool.execute(sqlQuery);
 }
 
+//Change Password
 const updateUser = (body, id) => {
-    const sqlQuery = `UPDATE  users SET name='${body.name}', email='${body.email}' WHERE id='${id}'`
+    const password = bcrypt.hashSync(body.password, 8)
+    const sqlQuery = `UPDATE  users SET name='${body.name}', email='${body.email}', password='${password}' WHERE id='${id}'`
 
     return dbPool.execute(sqlQuery);
 }

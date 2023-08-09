@@ -1,8 +1,11 @@
+const authJwt = require('../middleware/authJwt')
 const express = require('express');
 const userController = require('../controller/users.js')
 const router = express.Router();
 
-router.get("/", userController.getAllUsers)
+
+
+router.get("/",[authJwt.verifyToken], userController.getAllUsers)
 
 router.patch("/:id", userController.updateUser)
 

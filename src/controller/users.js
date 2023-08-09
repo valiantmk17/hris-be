@@ -1,13 +1,14 @@
 const userModels = require('../models/users')
-
+const response = require('../middleware/response')
 const getAllUsers =  async (req, res) => {
     try {
         const [dataDB] = await userModels.getAllUsers();
     
-        res.json({
-            message: "GET all user sukses",
-            data: dataDB,
-        })
+        res.status(200).json(response.getStandardResponse(
+            res.statusCode,
+            "GET all user sukses",
+            dataDB
+        ))
     } catch (error) {
         res.status(500).json({
             message: "Server Error",
@@ -23,7 +24,7 @@ const createNewUser = async (req, res) => {
     
         res.json({
             message: "CREATE new user success",
-            body: req.body
+            data: req.body
         })
     } catch (error) {
         res.status(500).json({
