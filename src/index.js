@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
+const hrRoute = require('./routes/hr')
 const hdRoute = require('./routes/hd')
 const middlewareLogs = require('./middleware/logs')
 const app = express()
@@ -23,6 +24,7 @@ app.use(middlewareLogs)
 
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
+app.use("/hr", hrRoute);
 app.use("/hd", hdRoute);
 
 app.listen(port, () => {

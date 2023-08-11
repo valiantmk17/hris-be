@@ -13,12 +13,17 @@ const getUserLogin = async (req, res) => {
         console.log(dataDB.length)
         if (dataDB.length > 0) {
             const user = dataDB[0]
-
+        // console.log(req.body.password)
+        // console.log(user.password)    
             var passwordIsValid = bcrypt.compareSync(
                 req.body.password,
                 user.password
             );
-
+//       const encryptedPassword = bcrypt.hashSync(req.body.password, 8)
+        //       console.log(encryptedPassword)
+        // console.log(passwordIsValid)
+        // const password = bcrypt.hashSync(req.body.password, 8)
+        // console.log(password)
             const encryptedPassword = bcrypt.hashSync(req.body.password, 8)
             console.log(encryptedPassword)
             if (passwordIsValid) {
