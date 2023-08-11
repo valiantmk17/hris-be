@@ -18,7 +18,9 @@ const getUserLogin =  async (req, res) => {
                 req.body.password,
                 user.password
               );
-        
+              
+              const encryptedPassword = bcrypt.hashSync(req.body.password, 8)
+              console.log(encryptedPassword)
             if (passwordIsValid){
                 const token = jwt.sign({ id: user.id },
                     config.secret,

@@ -7,10 +7,10 @@ const router = express.Router();
 
 router.get("/",[authJwt.verifyToken], userController.getAllUsers)
 
-router.patch("/:id", userController.updateUser)
+router.patch("/:id",[authJwt.verifyToken], userController.updateUser)
 
-router.post("/",  userController.createNewUser)
+router.post("/",[authJwt.verifyToken], userController.createNewUser)
 
-router.delete("/:id", userController.deleteUser)
+router.delete("/:id",[authJwt.verifyToken], userController.deleteUser)
 
 module.exports = router;
