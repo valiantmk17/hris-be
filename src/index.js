@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
+const hrRoute = require('./routes/hr')
 const middlewareLogs = require('./middleware/logs')
 const app = express()
 const port = process.env.PORT
@@ -22,6 +23,7 @@ app.use(middlewareLogs)
 
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
+app.use("/hr", hrRoute);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
