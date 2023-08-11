@@ -1,12 +1,12 @@
-const userModels = require('../models/users')
+const leaveModels = require('../models/leave')
 const response = require('../middleware/response')
-const getAllUsers =  async (req, res) => {
+const getAllLeave =  async (req, res) => {
     try {
-        const [dataDB] = await userModels.getAllUsers();
+        const [dataDB] = await leaveModels.getAllLeave();
     
         res.status(200).json(response.getStandardResponse(
             res.statusCode,
-            "GET all user success",
+            "GET all leave success",
             dataDB
         ))
     } catch (error) {
@@ -18,12 +18,12 @@ const getAllUsers =  async (req, res) => {
 
 }
 
-const createNewUser = async (req, res) => {
+const createNewLeave = async (req, res) => {
     try {
-        await userModels.createNewUser(req.body);
+        await leaveModels.createNewLeave(req.body);
     
         res.json({
-            message: "CREATE new user success",
+            message: "CREATE new leave success",
             data: req.body
         })
     } catch (error) {
@@ -34,15 +34,15 @@ const createNewUser = async (req, res) => {
     }
 }
 
-const updateUser = async (req, res) => {
+const updateLeave = async (req, res) => {
     const id = req.params.id;
     const {body} = req;
 
     try {
-        await userModels.updateUser(body, id)
+        await leaveModels.updateLeave(body, id)
 
         res.json({
-            message: "UPDATE user success",
+            message: "UPDATE leave success",
             body: {
                 id: id,
                 ...body
@@ -56,13 +56,13 @@ const updateUser = async (req, res) => {
     }
 }
 
-const deleteUser = async (req, res) => {
+const deleteLeave = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await userModels.deleteUser(id);
+        await leaveModels.deleteleave(id);
         res.json({
-            message: "DELETE user ID "+id+" success",
+            message: "DELETE leave ID "+id+" success",
             body: null
         })
     } catch (error) {
@@ -74,8 +74,8 @@ const deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    getAllUsers,
-    createNewUser,
-    updateUser,
-    deleteUser,
+    getAllLeave,
+    createNewLeave,
+    updateLeave,
+    deleteLeave,
 }
