@@ -12,7 +12,7 @@ const createNewUser = (body) => {
     const sqlQuery = `INSERT INTO users (name, email,password) VALUES ('${body.name}', '${body.email}', '${encryptedPassword}')`
 
     return dbPool.execute(sqlQuery);
-}
+}   
 
 //Change Password
 const updateUser = (body, id) => {
